@@ -8,10 +8,24 @@
 
   outputs =
     inputs:
+    let
+      otherPkgs = {
+        nixpkgs-unstable = import inputs.nixpkgs-unstable {
+          system = "x86_64-linux";
+          config.allowUnfree = true;
+        };
+      };
+    in
     {
       nixosConfigurations = {
         charon = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit otherPkgs;
+          };
           modules = [
+            {
+              networking.hostName = "charon";
+            }
             ./configuration/charon/configuration.nix
           ];
         };

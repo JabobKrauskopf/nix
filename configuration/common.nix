@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   networking.networkmanager.enable = true;
@@ -51,4 +51,9 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd5rD/DawdTv/W1tB+A5upZl3b18PpRbDaUKPhVjorl"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG1k4B+cwehZLQNaOG8+H1epIqnBCB4bMPc/kbz2Z1su"
   ];
+
+  nix.registry = {
+    nixpkgs.flake = inputs.nixpkgs; # This line technically isn't needed (building the system automatically adds it), but is added for consistency
+    nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
+  };
 }

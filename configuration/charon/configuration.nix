@@ -15,7 +15,6 @@
     isNormalUser = true;
     description = "Sysadmin";
     extraGroups = [ "networkmanager" "wheel" "docker" ];
-    packages = with pkgs; [];
   };
 
   environment.systemPackages = with pkgs otherPkgs; [];

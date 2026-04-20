@@ -20,7 +20,7 @@
       nixosConfigurations = {
         charon = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit otherPkgs;
+            inherit inputs otherPkgs;
           };
           modules = [
             {

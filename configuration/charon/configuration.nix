@@ -30,4 +30,9 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
   virtualisation.docker.enable = true;
+
+  networking.firewall.trustedInterfaces = [
+    "docker0"
+    "br-+"
+  ];
 }

@@ -21,6 +21,8 @@
         charon = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs otherPkgs;
+            defaultUser = "sysadmin";
+            defaultDescription = "Sysadmin";
           };
           modules = [
             {

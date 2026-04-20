@@ -1,4 +1,4 @@
-{ config, pkgs, otherPkgs, ... }:
+{ config, pkgs, otherPkgs, defaultUser, defaultDescription, ... }:
 
 {
   imports =
@@ -11,9 +11,9 @@
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
 
-  users.users.sysadmin = {
+  users.users.${defaultUser} = {
     isNormalUser = true;
-    description = "Sysadmin";
+    description = defaultDescription;
     extraGroups = [ "networkmanager" "wheel" "docker" ];
   };
 

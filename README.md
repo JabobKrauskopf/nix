@@ -1,6 +1,7 @@
 # Commands
 
 - Rebuild from flake: `sudo nixos-rebuild switch --flake .#charon` (`#charon` defines which config to use. Omit to use hostname)
+- Run commands through nix shell: `nix shell {registry}#{package}`, e.g. `nix shell nixpkgs#git`. You can also run commands directly, e.g. `nix shell nixpkgs#cowsay -c cowsay lololol`
 - Build flake, don't add to grub: `sudo nixos-rebuild test --flake .`
 - Build, add to grub but dont switch instantly: `sudo nixos-rebuild boot --flake .`
 - Update Lockfile: `nix flake update`

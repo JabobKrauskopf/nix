@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, inputs, defaultUser,  ... }:
 
 {
   networking.networkmanager.enable = true;
@@ -43,7 +43,7 @@
     openssl
   ];
 
-  users.users.sysadmin.openssh.authorizedKeys.keys = [
+  users.users.${defaultUser}.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOHa42I8eXyoYPxrxkH78JrBLwTxmRRTKcqngSJlslln"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOkCxNu7nu3XOHWjm/DpuBN1Ttp1uSKj9nXF/TEpiDGF"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIH4qr9sHVc0/WXaNHDHcWt7skwv3nWn7GVQiu84iIC8n"
@@ -56,4 +56,13 @@
     nixpkgs.flake = inputs.nixpkgs; # This line technically isn't needed (building the system automatically adds it), but is added for consistency
     nixpkgs-unstable.flake = inputs.nixpkgs-unstable;
   };
+
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
+  };
+
+  users.defaultUserShell = pkgs.fish;
 }

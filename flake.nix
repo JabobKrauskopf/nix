@@ -57,11 +57,19 @@
       };
       homeConfigurations = {
         jakob = inputs.home-manager.lib.homeManagerConfiguration {
-          specialArgs = {
-            inherit inputs otherPkgs;
+          pkgs = import inputs.nixpkgs {
+            system = "x86_64-linux";
+            config.allowUnfree = true;
           };
+
           modules = [
+            inputs.plasma-manager.homeModules.plasma-manager
             ./home/jakob.nix
+            {
+              home.username = "jakob";
+              home.homeDirectory = "/home/jakob";
+            }
+
           ];
         };
       };

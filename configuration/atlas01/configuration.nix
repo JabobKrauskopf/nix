@@ -1,29 +1,20 @@
 {
   pkgs,
   otherPkgs,
-  defaultUser,
-  defaultDescription,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../common-desktop.nix
+    ../../common/desktop.nix
+    ../../common/programs/nvidia.nix
+    ../../common/programs/steam.nix
+    ../../common/programs/programming.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  users.users.${defaultUser} = {
-    isNormalUser = true;
-    description = defaultDescription;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-  };
 
   environment.systemPackages =
     with pkgs;

@@ -1,30 +1,18 @@
 {
   pkgs,
   otherPkgs,
-  defaultUser,
-  defaultDescription,
   ...
 }:
 
 {
   imports = [
     ./hardware-configuration.nix
-    ../common-server.nix
+    ../../common/servers/local.nix
   ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
   boot.loader.grub.useOSProber = true;
-
-  users.users.${defaultUser} = {
-    isNormalUser = true;
-    description = defaultDescription;
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "docker"
-    ];
-  };
 
   environment.systemPackages = with pkgs otherPkgs; [ ];
 
@@ -37,11 +25,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.11"; # Did you read the comment?
-
-  virtualisation.docker.enable = true;
-
-  networking.firewall.trustedInterfaces = [
-    "docker0"
-    "br-+"
-  ];
 }

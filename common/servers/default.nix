@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./common.nix
+    ../default.nix
   ];
 
   users.users.${defaultUser}.openssh.authorizedKeys.keys = [

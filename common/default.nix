@@ -1,8 +1,12 @@
-{ pkgs, inputs, ... }:
+{
+  pkgs,
+  inputs,
+  defaultUser,
+  defaultDescription,
+  ...
+}:
 
 {
-  networking.networkmanager.enable = true;
-
   time.timeZone = "Europe/Berlin";
 
   i18n.defaultLocale = "en_US.UTF-8";
@@ -31,6 +35,15 @@
     "flakes"
   ];
 
+  users.users.${defaultUser} = {
+    isNormalUser = true;
+    description = defaultDescription;
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+    ];
+  };
+
   environment.shellAliases = {
     nix-shell = "echo 'Use `nix shell nixpkgs#hello` instead.'"; # TODO: remove this once muscle memory has been updated
   };
@@ -46,6 +59,7 @@
     jq
     ncdu
     dysk
+    gnumake
   ];
 
   nix.registry = {

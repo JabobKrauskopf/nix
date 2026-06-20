@@ -4,6 +4,16 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/release-26.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs =
@@ -42,6 +52,16 @@
               networking.hostName = "charon";
             }
             ./configuration/charon/configuration.nix
+          ];
+        };
+      };
+      homeConfigurations = {
+        jakob = inputs.home-manager.lib.homeManagerConfiguration {
+          specialArgs = {
+            inherit inputs otherPkgs;
+          };
+          modules = [
+            ./home/jakob.nix
           ];
         };
       };

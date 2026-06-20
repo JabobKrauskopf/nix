@@ -1,11 +1,16 @@
-{ pkgs, otherPkgs, defaultUser, defaultDescription, ... }:
+{
+  pkgs,
+  otherPkgs,
+  defaultUser,
+  defaultDescription,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../common-desktop.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../common-desktop.nix
+  ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -13,14 +18,21 @@
   users.users.${defaultUser} = {
     isNormalUser = true;
     description = defaultDescription;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
-  environment.systemPackages = with pkgs; with otherPkgs; [
-    teamspeak6-client
-    element-desktop
-    slack
-  ];
+  environment.systemPackages =
+    with pkgs;
+    with otherPkgs;
+    [
+      teamspeak6-client
+      element-desktop
+      slack
+    ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

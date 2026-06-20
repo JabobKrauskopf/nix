@@ -1,11 +1,16 @@
-{ pkgs, otherPkgs, defaultUser, defaultDescription, ... }:
+{
+  pkgs,
+  otherPkgs,
+  defaultUser,
+  defaultDescription,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./hardware-configuration.nix
-      ../common-server.nix
-    ];
+  imports = [
+    ./hardware-configuration.nix
+    ../common-server.nix
+  ];
 
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/sda";
@@ -14,10 +19,14 @@
   users.users.${defaultUser} = {
     isNormalUser = true;
     description = defaultDescription;
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
 
-  environment.systemPackages = with pkgs otherPkgs; [];
+  environment.systemPackages = with pkgs otherPkgs; [ ];
 
   services.openssh.enable = true;
 

@@ -1,10 +1,14 @@
-{ pkgs, otherPkgs, defaultUser, ... }:
+{
+  pkgs,
+  otherPkgs,
+  defaultUser,
+  ...
+}:
 
 {
-  imports =
-    [
-      ./common.nix
-    ];
+  imports = [
+    ./common.nix
+  ];
 
   services.xserver.enable = true;
 
@@ -25,19 +29,23 @@
 
   programs.firefox.enable = true;
 
-  environment.systemPackages = with pkgs; with otherPkgs; [
-    kdePackages.kfind
-    kdePackages.isoimagewriter
-    kdePackages.partitionmanager
-    kdePackages.ksystemlog
-    kdePackages.kcalc
-    vlc
-    thunderbird
-    wl-clipboard
-    bitwarden-desktop
-    nixpkgs-unstable.vscode
-    sourcegit
-  ];
+  environment.systemPackages =
+    with pkgs;
+    with otherPkgs;
+    [
+      kdePackages.kfind
+      kdePackages.isoimagewriter
+      kdePackages.partitionmanager
+      kdePackages.ksystemlog
+      kdePackages.kcalc
+      vlc
+      thunderbird
+      wl-clipboard
+      bitwarden-desktop
+      nixpkgs-unstable.vscode
+      sourcegit
+      home-manager
+    ];
 
   environment.sessionVariables = {
     SSH_AUTH_SOCK = "/home/${defaultUser}/.bitwarden-ssh-agent.sock";

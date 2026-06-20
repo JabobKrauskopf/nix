@@ -2,7 +2,7 @@
   description = "Jakob's Flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
@@ -18,6 +18,19 @@
     in
     {
       nixosConfigurations = {
+        atlas01 = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs otherPkgs;
+            defaultUser = "jakob";
+            defaultDescription = "Jakob";
+          };
+          modules = [
+            {
+              networking.hostName = "atlas01";
+            }
+            ./configuration/atlas01/configuration.nix
+          ];
+        };
         charon = inputs.nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit inputs otherPkgs;

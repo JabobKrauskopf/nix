@@ -7,6 +7,24 @@
       email = mail@jakobkraus.de
   '';
 
+  xdg.dataFile = {
+    "kio/servicemenus/open-in-vscode.desktop" = {
+      text = ''
+        [Desktop Entry]
+        Type=Service
+        MimeType=inode/directory;
+        Actions=openInVSCode;
+        X-KDE-Priority=TopLevel
+
+        [Desktop Action openInVSCode]
+        Name=Open in VS Code
+        Icon=vscode
+        Exec=code %F
+      '';
+      executable = true;
+    };
+  };
+
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
   # introduces backwards incompatible changes.

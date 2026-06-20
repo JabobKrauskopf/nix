@@ -8,11 +8,15 @@
 {
   imports = [
     ./default.nix
+    ./programs/firefox.nix
+    ./programs/uxplay.nix
   ];
 
   networking.networkmanager.enable = true;
 
   hardware.bluetooth.enable = true;
+
+  services.fwupd.enable = true;
 
   services.xserver.enable = true;
 
@@ -20,6 +24,10 @@
   services.desktopManager.plasma6.enable = true;
 
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true; # Needed for printing (and being able to resolves names in the `.local` domain)
+  };
 
   # Audio
   services.pulseaudio.enable = false;
@@ -31,7 +39,9 @@
     pulse.enable = true;
   };
 
-  programs.firefox.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    elisa
+  ];
 
   environment.systemPackages =
     with pkgs;
@@ -59,4 +69,16 @@
   nixpkgs.config.permittedInsecurePackages = [
     "electron-39.8.10"
   ];
+
+  environment.etc = {
+    "xdg/kcminputrc".text = ''
+      # Mouse & Touchpad > (mouse) > Acceleration profile: None/Flat (applies to all mice)
+      [Libinput][Defaults][Pointer][$i]
+      PointerAccelerationProfile=1
+
+      # Keyboard > NumLock on startup: Turn on
+      [Keyboard][$i]
+      NumLock=0
+    '';
+  };
 }

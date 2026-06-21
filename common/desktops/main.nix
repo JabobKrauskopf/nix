@@ -1,5 +1,6 @@
 {
   pkgs,
+  otherPkgs,
   ...
 }:
 
@@ -14,10 +15,13 @@
     ../programs/spotify.nix
   ];
 
-  environment.systemPackages = with pkgs; [
-    teamspeak6-client
-    element-desktop
-    slack
-    proton-vpn
-  ];
+  environment.systemPackages =
+    with pkgs;
+    with otherPkgs;
+    [
+      nixpkgs-unstable.teamspeak6-client
+      element-desktop
+      slack
+      proton-vpn
+    ];
 }

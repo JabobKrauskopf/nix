@@ -7,23 +7,11 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../common/desktop.nix
-    ../../common/programs/nvidia.nix
-    ../../common/programs/steam.nix
-    ../../common/programs/programming.nix
+    ../../common/desktops/main.nix
   ];
 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-
-  environment.systemPackages =
-    with pkgs;
-    with otherPkgs;
-    [
-      teamspeak6-client
-      element-desktop
-      slack
-    ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

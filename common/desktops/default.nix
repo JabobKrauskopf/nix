@@ -7,9 +7,8 @@
 
 {
   imports = [
-    ./default.nix
-    ./programs/firefox.nix
-    ./programs/uxplay.nix
+    ../default.nix
+    ../programs/firefox.nix
   ];
 
   networking.networkmanager.enable = true;

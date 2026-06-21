@@ -7,6 +7,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disks
     ../../common/desktops/main.nix
   ];
 

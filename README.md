@@ -10,6 +10,13 @@
 - Check flake with debugger: `nix flake check --debugger`
 - NixOS Garbage Collection: `sudo nix-collect-garbage -d && nix-collect-garbage -d` (Don't currently know why both sudo and non-sudo)
 
+## Disko Commands
+
+- Disk configs live in `configuration/<host>/disks/`, one file per disk. The disko NixOS module generates `fileSystems.*` entries on rebuild
+- Wipe + partition + format + mount one disk (DESTRUCTIVE): `sudo nix run github:nix-community/disko -- --mode disko ./configuration/<host>/disks/<disk>.nix`
+- Reformat without repartitioning (DESTRUCTIVE): same command with `--mode format`
+- Mount existing filesystems, preserve data: same command with `--mode mount`
+
 ## Home Manager Commands
 
 - Rebuild: `home-manager switch --flake .`

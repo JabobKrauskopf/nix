@@ -14,6 +14,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -38,6 +43,7 @@
             {
               networking.hostName = "atlas01";
             }
+            inputs.disko.nixosModules.disko
             ./configuration/atlas01/configuration.nix
           ];
         };

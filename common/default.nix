@@ -75,4 +75,11 @@
   };
 
   users.defaultUserShell = pkgs.fish;
+
+  swapDevices = [
+    {
+      device = "/var/lib/swapfile";
+      size = 16 * 1024; # 16 GiB, in MiB
+    }
+  ];
 }

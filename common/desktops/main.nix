@@ -23,5 +23,6 @@
       element-desktop
       slack
       proton-vpn
+      yaak
     ];
 }

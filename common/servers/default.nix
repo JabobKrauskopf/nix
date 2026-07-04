@@ -3,6 +3,7 @@
 {
   imports = [
     ../default.nix
+    ../programs/docker.nix
   ];
 
   users.users.${defaultUser}.openssh.authorizedKeys.keys = [
@@ -13,4 +14,8 @@
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDd5rD/DawdTv/W1tB+A5upZl3b18PpRbDaUKPhVjorl"
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG1k4B+cwehZLQNaOG8+H1epIqnBCB4bMPc/kbz2Z1su"
   ];
+
+  services.openssh.enable = true;
+
+  programs.nix-ld.enable = true;
 }

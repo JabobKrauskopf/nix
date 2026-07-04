@@ -60,6 +60,19 @@
             ./configuration/charon/configuration.nix
           ];
         };
+        neptune01 = inputs.nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs otherPkgs;
+            defaultUser = "sysadmin";
+            defaultDescription = "Sysadmin";
+          };
+          modules = [
+            {
+              networking.hostName = "neptune01";
+            }
+            ./configuration/neptune01/configuration.nix
+          ];
+        };
       };
       homeConfigurations = {
         jakob = inputs.home-manager.lib.homeManagerConfiguration {

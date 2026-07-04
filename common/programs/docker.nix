@@ -8,4 +8,13 @@
     "docker0"
     "br-+"
   ];
+
+  virtualisation.docker.daemon.settings = {
+    default-address-pools = [
+      {
+        base = "172.16.0.0/12";
+        size = 24;
+      }
+    ];
+  };
 }

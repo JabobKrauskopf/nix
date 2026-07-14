@@ -8,6 +8,7 @@
   imports = [
     ./docker.nix
     ./python.nix
+    ./rust.nix
   ];
 
   environment.systemPackages =

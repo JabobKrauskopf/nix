@@ -13,6 +13,7 @@
     ../programs/uxplay.nix
     ../programs/jellyfin.nix
     ../programs/spotify.nix
+    ../programs/fluxer.nix
   ];
 
   environment.systemPackages =

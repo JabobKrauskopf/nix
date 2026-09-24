@@ -14,6 +14,7 @@
     ../programs/jellyfin.nix
     ../programs/spotify.nix
     ../programs/fluxer.nix
+    ../programs/bambu-studio.nix
   ];
 
   environment.systemPackages =

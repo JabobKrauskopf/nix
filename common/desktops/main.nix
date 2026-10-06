@@ -23,6 +23,7 @@
     [
       nixpkgs-unstable.teamspeak6-client
       element-desktop
+      signal-desktop
       slack
       proton-vpn
       yaak

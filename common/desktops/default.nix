@@ -51,6 +51,7 @@
       kdePackages.partitionmanager
       kdePackages.ksystemlog
       kdePackages.kcalc
+      mission-center
       vlc
       thunderbird
       wl-clipboard

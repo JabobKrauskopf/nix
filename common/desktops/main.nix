@@ -13,7 +13,7 @@
     ../programs/uxplay.nix
     ../programs/jellyfin.nix
     ../programs/spotify.nix
-    ../programs/fluxer.nix
+    ../programs/fluxer
     ../programs/bambu-studio.nix
   ];
 
@@ -26,6 +26,7 @@
       signal-desktop
       slack
       proton-vpn
-      yaak
+      nixpkgs-unstable.yaak
+      nixpkgs-unstable.rustdesk-flutter
     ];
 }
